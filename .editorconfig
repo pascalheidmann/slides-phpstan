@@ -40,7 +40,6 @@ ij_css_value_alignment = do_not_align
 
 [*.less]
 trim_trailing_whitespace = true
-indent_size = 2
 ij_less_align_closing_brace_with_properties = false
 ij_less_blank_lines_around_nested_selector = 1
 ij_less_blank_lines_between_blocks = 1
