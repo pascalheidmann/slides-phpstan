@@ -1,11 +1,11 @@
 version: '3.4'
 services:
     node:
-        image: node:lts-alpine
-        working_dir: /app
+        image: tangramor/slidev:latest
+        working_dir: /slidev
         ports:
             - "3030:3030"
         volumes:
-            -   .:/app
+            - .:/slidev
         stdin_open: true # docker run -i
         tty: true
