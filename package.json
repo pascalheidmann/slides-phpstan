@@ -1,15 +1,16 @@
 {
-  "name": "phpstan",
-  "private": true,
-  "scripts": {
-    "build": "slidev build",
-    "dev": "slidev --open",
-    "export": "slidev export"
-  },
-  "dependencies": {
-    "@slidev/cli": "^0.40.3",
-    "@slidev/theme-default": "*",
-    "@slidev/theme-seriph": "*",
-    "slidev-theme-dracula": "^0.1.0"
-  }
+	"name" : "slides-phpstan",
+	"private" : true,
+	"scripts" : {
+		"build" : "slidev build",
+		"dev" : "slidev --open",
+		"export" : "slidev export"
+	},
+	"dependencies" : {
+		"@slidev/cli" : "^0.40.3",
+		"@slidev/theme-default" : "*",
+		"@slidev/theme-seriph" : "*",
+		"slidev-theme-dracula" : "^0.1.0",
+		"slidev-theme-check24" : "https://github.com/pascalheidmann/slidev-theme-check24.git#main"
+	}
 }
