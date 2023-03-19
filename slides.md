@@ -90,7 +90,7 @@ layout: default
 
 # Basic example[^1]
 
-```php {all|all|5|7}
+```php {all|all|5|7|all}
 <?php declare(strict_types = 1);
 
 class HelloWorld
@@ -113,9 +113,57 @@ class HelloWorld
 
 [^1]: [source: try phpstan](https://phpstan.org/r/549ceaa7-c9fd-4e35-ae5c-38fd6cb3dd7d)
 
+<!--
+DateTimeImmutable
+-->
+
+---
+
+# Basic example (solved)
+```php {5}
+<?php declare(strict_types = 1);
+
+class HelloWorld
+{
+	public function sayHello(DateTimeImmutable $date): void
+	{
+		echo 'Hello, ' . $date->format('j. n. Y');
+	}
+}
+```
+
+<p style="background: rgb(220 252 231/.8); padding: .5rem">No errors!</p>
+
+---
+layout: center
+---
+
+# How does this work?
+
+<v-clicks>
+
+- Return types
+```php
+function foo(): MyClass {}
+```
+
+- Type hints
+```php
+function bar(string $myString) {}
+```
+
+- Doc block
+```php
+/**
+* @param string $param
+ */
+function baz($param) {}
+```
+
+</v-clicks>
+
 ---
 layout: end
 
 transition: fade-out
 ---
-
