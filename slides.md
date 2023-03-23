@@ -67,8 +67,8 @@ layout: section
 
 # What is PHPStan
 
-<div class="text-center">
-    <span v-after>
+<h2 class="text-center">
+    <span v-click>
     PHP
     </span>
     <span v-click>
@@ -77,7 +77,7 @@ layout: section
     <span v-click>
     = PHPStan
     </span>
-</div>
+</h2>
 
 <div class="text-center" v-click>
     <h3>Let our computer do the heavy work and test your code automatically.</h3>
@@ -135,7 +135,7 @@ class HelloWorld
 <p style="background: rgb(220 252 231/.8); padding: .5rem">No errors!</p>
 
 ---
-layout: center
+layout: default
 ---
 
 # How does this work?
@@ -161,6 +161,52 @@ function baz($param) {}
 ```
 
 </v-clicks>
+
+---
+layout: default
+---
+# Arrays
+
+- In PHP a special vehicle
+  - Index based list of things (other languages: `list`, `array`)
+  - Associative array (other languages: `map`, `object`, `hash`)
+  - Combination of both... 🥳
+
+---
+layout: default
+---
+
+
+---
+layout: default
+---
+# Solution: Generics
+
+## Fixed type array
+```java
+// array of 5 strings
+myStringArray = new String[5];
+
+// ...
+
+function foo(String[] stringArray) {}
+
+foo(myStringArray);
+```
+
+## Generic arrays
+```java
+function foo<T>(T[] genericArray) {}
+
+foo<String>(myStringArray);
+```
+
+## But: PHP doesn't have generics or even typed arrays 
+
+---
+layout: default
+---
+
 
 ---
 layout: end
