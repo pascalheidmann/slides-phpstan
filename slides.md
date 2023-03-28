@@ -39,6 +39,7 @@ Hi, I'm Pascal and working as Developer @ Check24 Hamburg
 - <a href="https://github.com/pascalheidmann" target="_blank"><carbon-logo-github /> github.com/pascalheidmann</a>
 - <a href="https://www.linkedin.com/in/pascal-heidmann/" target="_blank"><carbon-logo-linkedin />
   linkedin.com/in/pascal-heidmann</a>
+- <a href="https://heidmann.io" target="_blank"><mdi-account-circle /> heidmann.io</a>
 
 ---
 layout: center
@@ -159,6 +160,8 @@ function bar(string $myString) {}
  */
 function baz($param) {}
 ```
+
+\+ stubs & phpstan extensions
 
 </v-clicks>
 
