@@ -60,8 +60,6 @@ layout: default
   - and even 8.0 <-> 8.1 🤯
 
 ---
-layout: default
----
 
 # Breaking Changes PHP 8.0 / 8.1
 
@@ -109,8 +107,6 @@ layout: default
     <p>No need to write tests!</p>
 </div>
 
----
-layout: default
 ---
 
 # Basic example[^1]
@@ -160,8 +156,6 @@ class HelloWorld
 <p style="background: rgb(220 252 231/.8); padding: .5rem">No errors!</p>
 
 ---
-layout: default
----
 
 # How does this work?
 
@@ -197,8 +191,7 @@ function bar(string $myString) {}
 </v-click>
 
 ---
-layout: default
----
+
 # Conflicting code [^1]
 
 ```php {all|3,7-9,11|all}
@@ -232,8 +225,6 @@ In PHP a special vehicle
 - Associative array (other languages: `map`, `object`, `hash`)
 - Combination of both... 🥳
 
----
-layout: default
 ---
 
 # Solution: Generics
@@ -271,8 +262,7 @@ class Foo {
 </v-click>
 
 ---
-layout: default
----
+
 # PHPStan annotations to the rescue
 
 ```php
@@ -283,17 +273,47 @@ class MyClass {
      private Collection $bars;
      
     /**
-     * @param Traversable<int, float> $traversable
+     * @param Traversable<int, float>|null $traversable
      * @return array<string, MyInterface>
      */
     function foo(?Traversable $traversable): array {
         // ...
     }
 }
+
 ```
 
 ---
+
+### Callables[^1]
+
+```php {1-6|8-9|11-12|all}
+/**
+ * @param Closure(string $foo): void $callback
+ */
+function foo(callable $callback): void {
+    $callback('test');
+}
+
+function invalid(int $foo): void {}
+function valid(string $foo): void {}
+
+foo(invalid(...));
+foo(valid(...));
+```
+
+<div v-click="3">
+
+| Line | Error                                                                                           |
+|------|-------------------------------------------------------------------------------------------------|
+| 11   | Parameter #1 $callback of function foo expects Closure(string): void, Closure(int): void given. |
+
+</div>
+
+[^1]: https://phpstan.org/r/65fa3f86-3f82-4d4a-a391-71fcb3b4827d
+
 ---
+
 # Alternatives for IDEs without support
 
 ### Prefixed annotations 
@@ -326,37 +346,6 @@ function foo(array $param) {
 ### PHPStorm and VSCode understand extended `@param`, `@var` etc.
 
 </v-click>
-
----
-layout: default
----
-
-### Callables[^1]
-
-```php {1-6|8-9|11-12|all}
-/**
- * @param Closure(string $foo): void $callback
- */
-function foo(callable $callback): void {
-    $callback('test');
-}
-
-function invalid(int $foo): void {}
-function valid(string $foo): void {}
-
-foo(invalid(...));
-foo(valid(...));
-```
-
-<div v-click="3">
-
-| Line | Error                                                                                           |
-|------|-------------------------------------------------------------------------------------------------|
-| 11   | Parameter #1 $callback of function foo expects Closure(string): void, Closure(int): void given. |
-
-</div>
-
-[^1]: https://phpstan.org/r/65fa3f86-3f82-4d4a-a391-71fcb3b4827d
 
 ---
 layout: center
@@ -415,8 +404,7 @@ Note: Using configuration file phpstan.neon.dist.
 ```
 
 ---
-layout: default
----
+
 # phpstan-baseline.neon
 
 - Feature to keep track of errors
@@ -439,8 +427,7 @@ includes:
 </v-clicks>
 
 ---
-layout: default
----
+
 # Rule level & `mixed` [^1]
 
 <v-clicks>
@@ -457,8 +444,7 @@ layout: default
 </v-clicks>
 
 [^1]: https://phpstan.org/user-guide/rule-levels
----
-layout: default
+
 ---
 
 # Bonus: integrate into CI[^1]
@@ -481,6 +467,37 @@ phpstan analyse -c phpstan.neon --error-format=gitlab
 More output types: `teamcity`, `json`, `prettyJson`, `checkstyle`, `raw`
 
 [^1]: https://phpstan.org/user-guide/output-format
+
+---
+
+# Bonus: Extending PHPStan
+There are lots of extension already available
+
+<v-click>
+
+### Example: service container
+```php
+/** @var \Psr\Container\ContainerInterface $container */
+/** @var ??? $fooService */
+$fooService = $container->get(FooService::class);
+```
+
+</v-click>
+
+<v-click>
+
+-> [`bnf/phpstan-psr-container`](https://github.com/bnf/phpstan-psr-container)
+
+</v-click>
+<v-click>
+
+Add to phpstan.neon:
+```yaml
+includes:
+    - vendor/bnf/phpstan-psr-container/extension.neon
+```
+
+</v-click>
 
 ---
 layout: end
