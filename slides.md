@@ -500,6 +500,43 @@ includes:
 </v-click>
 
 ---
+
+# Bonus: Custom types / Alias[^1]
+
+### Define
+```php
+/** @phpstan-type UserAddress array{street: string, city: string, zip: string} */
+class User
+{
+	/**  @var UserAddress */
+	private $address; // is of type array{street: string, city: string, zip: string}
+}
+```
+
+### Import and use in other files
+```php
+/** @phpstan-import-type UserAddress from User */
+class Order
+{
+	/** @var UserAddress */
+	private $deliveryAddress; // is of type array{street: string, city: string, zip: string}
+}
+```
+
+[^1]: https://phpstan.org/writing-php-code/phpdoc-types#local-type-aliases
+
+---
+
+# Contribute
+
+Code is on <a href="https://github.com/phpstan/phpstan-src" target="_blank"><carbon-logo-github /> phpstan/phpstan-src</a>
+
+- Very active community
+- Nearly every week a new bug-release (but not really sem-ver yet)
+- Lots of neat extensions for your favorite framework
+- Used by other packages like rector for its code analytics functionality
+
+---
 layout: end
 
 transition: fade-out
