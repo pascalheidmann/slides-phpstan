@@ -14,6 +14,8 @@ drawings:
 # page transition
 
 transition: slide-left
+# transition: fade
+
 # use UnoCSS
 css: unocss
 
@@ -23,8 +25,11 @@ layout: cover
 ---
 # PHPStan
 
-Pain you gotta love
+<p style="text-decoration: line-through">Pain you gotta love</p>
 
+## How to update easily and detect errors early on
+
+[^1]: mostly
 ---
 layout: center
 ---
@@ -44,9 +49,34 @@ Hi, I'm Pascal and working as Developer @ Check24 Hamburg
 - <a href="https://heidmann.io" target="_blank"><mdi-account-circle /> heidmann.io</a>
 
 ---
-layout: center
+layout: default
+---
+# Situation May 2022
 
-transition: fade
+- Product running on PHP 7.4
+  - big codebase with > 100K LoC over 15K files
+- PHP 8.1 out, 8.2 in development
+- Lots of breaking changes between 7.4 <-> 8.0
+  - and even 8.0 <-> 8.1 🤯
+
+---
+layout: default
+---
+
+# Breaking Changes PHP 8.0 / 8.1
+
+- new keywords like `match`, `mixed`, `enum`, `readonly`
+- (most) resources have dedicated objects as return type instead of `resource`
+- string-number comparison
+- return types & type hints for native functions changed
+  - passing `null` to `non-null` arguments is deprecated
+
+
+## Lots of things that have to be checked manually
+Or can we get a little help by a friend?
+
+---
+layout: center
 ---
 
 # Who has used PHPStan?
@@ -56,29 +86,21 @@ Or psalm?
 </div>
 
 
-[//]: # (---)
-[//]: # (layout: section)
-[//]: # (---)
-
-[//]: # (# Agenda)
-[//]: # ()
-[//]: # (<Toc />)
-
 ---
-layout: section
+layout: default
 ---
 
 # What is PHPStan
 
 <h2 class="text-center">
     <span v-click>
+    PHPStan =
+    </span>
+    <span v-click>
     PHP
     </span>
     <span v-click>
     + Static Analysis
-    </span>
-    <span v-click>
-    = PHPStan
     </span>
 </h2>
 
@@ -143,11 +165,22 @@ layout: default
 
 # How does this work?
 
+- Doc block
+```php
+/**
+* @param string $param
+ */
+function baz($param) {}
+```
+
+<v-click>
+
 - Return types
 ```php
 function foo(): MyClass {}
 ```
 
+</v-click>
 <v-click>
 
 - Type hints
@@ -156,16 +189,7 @@ function bar(string $myString) {}
 ```
 
 </v-click>
-<v-click>
 
-- Doc block
-```php
-/**
-* @param string $param
- */
-function baz($param) {}
-```
-</v-click>
 <v-click>
 
 \+ stubs & phpstan extensions
@@ -175,21 +199,43 @@ function baz($param) {}
 ---
 layout: default
 ---
+# Conflicting code [^1]
+
+```php {all|3,7-9,11|all}
+<?php declare(strict_types = 1);
+
+function foo (): string {
+    return 'foo';
+}
+
+/**
+* @return int
+ */
+function bar() {
+    return foo();
+}
+```
+
+| Line | Error                                                |
+|------|------------------------------------------------------|
+| 11   | Function bar() should return int but returns string. |
+
+[^1]: https://phpstan.org/r/b5c4f4af-6fe8-4e9c-9377-757b4d4c69a2
+
+---
+layout: center
+---
 # Arrays
 
-- In PHP a special vehicle
-  - Index based list of things (other languages: `list`, `array`)
-  - Associative array (other languages: `map`, `object`, `hash`)
-  - Combination of both... 🥳
+In PHP a special vehicle
+- Index based list of things (other languages: `list`, `array`)
+- Associative array (other languages: `map`, `object`, `hash`)
+- Combination of both... 🥳
 
 ---
 layout: default
 ---
 
-
----
-layout: default
----
 # Solution: Generics
 
 ### Fixed type array
@@ -230,19 +276,30 @@ layout: default
 # PHPStan annotations to the rescue
 
 ```php
-/**
- * @return array<int, MyClass>
- */
-function foo(): array {
-    // ...
+class MyClass {
+    /**
+     * @var Collection<int, BarEntity>  
+     */
+     private Collection $bars;
+     
+    /**
+     * @param Traversable<int, float> $traversable
+     * @return array<string, MyInterface>
+     */
+    function foo(?Traversable $traversable): array {
+        // ...
+    }
 }
 ```
 
-<v-click>
+---
+---
+# Alternatives for IDEs without support
 
 ### Prefixed annotations 
 ```php
 /**
+ * @param array $param
  * @phpstan-param array<class-string<MyClass>, float> $params
  */
 function foo(array $params) {
@@ -250,19 +307,24 @@ function foo(array $params) {
 }
 ```
 
-</v-click>
-
 <v-click>
 
 ### Psalm
 ```php
 /**
+ * @param array $param
  * @psalm-param array<int<10, 50>, array{a: bool, b?: string}> $param
  */
 function foo(array $param) {
     // ...
 }
 ```
+</v-click>
+
+<v-click>
+
+### PHPStorm and VSCode understand extended `@param`, `@var` etc.
+
 </v-click>
 
 ---
@@ -273,7 +335,7 @@ layout: default
 
 ```php {1-6|8-9|11-12|all}
 /**
- * @phpstan-param Closure(string $foo): void $callback
+ * @param Closure(string $foo): void $callback
  */
 function foo(callable $callback): void {
     $callback('test');
@@ -344,13 +406,81 @@ Note: Using configuration file phpstan.neon.dist.
  710/710 [============================] 100%
 
  ------ ------------------------------------------------------------------------------------------------
-Line   src\Infrastructure\src\Model\DeviceType.php
+ Line   src\Infrastructure\src\Model\DeviceType.php
  ------ ------------------------------------------------------------------------------------------------
-29     Property VV\Expressive\PKV\Infrastructure\Model\DeviceType::$deviceType has no type specified.
+ 29     Property VV\Expressive\PKV\Infrastructure\Model\DeviceType::$deviceType has no type specified.
  ------ ------------------------------------------------------------------------------------------------
 
 [ERROR] Found 229 errors
 ```
+
+---
+layout: default
+---
+# phpstan-baseline.neon
+
+- Feature to keep track of errors
+
+<v-clicks>
+
+- Generate / update baseline
+```bash
+phpstan analyse --generate-baaseline phpstan-baseline.neon
+```
+
+- Add baseline to configuration
+```yaml
+includes:
+  - phpstan-baseline.neon
+```
+
+<p style="background: rgb(220 252 231/.8); padding: .5rem">No errors!</p>
+
+</v-clicks>
+
+---
+layout: default
+---
+# Rule level & `mixed` [^1]
+
+<v-clicks>
+
+- Between 0-9 (max)
+    - higher = more rules (= more errors)
+- PHP 8.0 introduced `mixed` for arbitrary output
+- `array` -> implicit `array<string|int, mixed>`
+  - Level 8+ treats `mixed` as own type that can't be matched -> ERROR
+
+### Start with lower rule set and solve errors first
+### Or: use baseline
+
+</v-clicks>
+
+[^1]: https://phpstan.org/user-guide/rule-levels
+---
+layout: default
+---
+
+# Bonus: integrate into CI[^1]
+
+### Junit
+```bash
+phpstan analyse -c phpstan.neon --error-format=junit
+```
+
+### GitHub Actions
+```bash
+phpstan analyse -c phpstan.neon --error-format=github
+```
+
+### Gitlab CI
+```bash
+phpstan analyse -c phpstan.neon --error-format=gitlab
+```
+
+More output types: `teamcity`, `json`, `prettyJson`, `checkstyle`, `raw`
+
+[^1]: https://phpstan.org/user-guide/output-format
 
 ---
 layout: end
