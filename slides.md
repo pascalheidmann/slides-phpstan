@@ -17,6 +17,8 @@ transition: slide-left
 # use UnoCSS
 css: unocss
 
+titleTemplate: '%s'
+
 layout: cover
 ---
 # PHPStan
