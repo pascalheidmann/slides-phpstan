@@ -74,17 +74,6 @@ layout: default
 Or can we get a little help by a friend?
 
 ---
-layout: center
----
-
-# Who has used PHPStan?
-
-<div v-click>
-Or psalm?
-</div>
-
-
----
 layout: default
 ---
 
@@ -104,9 +93,22 @@ layout: default
 
 <div class="text-center" v-click>
     <h3>Let our computer do the heavy work and test your code automatically.</h3>
-    <p>No need to write tests!</p>
+    <p>No need to write tests!<sup>*</sup></p>
+    <p style="font-size: 0.75rem">* please still write good phpunit tests!</p>
 </div>
 
+---
+layout: center
+---
+
+# Who has used PHPStan?
+
+<div v-click>
+Or psalm?
+</div>
+
+---
+layout: default
 ---
 
 # Basic example[^1]
