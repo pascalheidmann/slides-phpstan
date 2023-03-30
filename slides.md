@@ -218,7 +218,8 @@ function bar() {
 [^1]: https://phpstan.org/r/b5c4f4af-6fe8-4e9c-9377-757b4d4c69a2
 
 ---
-layout: center
+layout: image-left
+image: ./assets/tim-gouw-1K9T5YiZ2WU-unsplash-cropped.jpg
 ---
 # Arrays
 
@@ -268,15 +269,19 @@ class Foo {
 # PHPStan annotations to the rescue
 
 ```php
-class MyClass {
+/**
+ * @extends AbstractClass<BarEntity>
+ * @method static int magicStaticMethod(string $param1)
+ */
+class MyClass extends AbstractClass{
     /**
      * @var Collection<int, BarEntity>  
      */
      private Collection $bars;
      
     /**
-     * @param Traversable<int, float>|null $traversable
-     * @return array<string, MyInterface>
+     * @param Traversable<int, MyInterface>|null $traversable
+     * @return array<string, float>
      */
     function foo(?Traversable $traversable): array {
         // ...
