@@ -59,7 +59,7 @@ hideInToc: true
 <Toc minDepth="1" maxDepth="1" />
 
 ---
-layout: default
+layout: center
 
 title: Starting point
 ---
@@ -88,12 +88,12 @@ hideInToc: true
 Or can we get a little help by a friend?
 
 ---
-layout: default
+layout: center
 ---
 
 # What is PHPStan
 
-<h2 class="text-center">
+<h2>
     <span v-click>
     PHPStan =
     </span>
@@ -105,14 +105,14 @@ layout: default
     </span>
 </h2>
 
-<div class="text-center" v-click>
+<div class="text-center" style="padding-top: 5rem" v-click>
     <h3>Let our computer do the heavy work and test your code automatically.</h3>
     <p>No need to write tests!<sup>*</sup></p>
     <p style="font-size: 0.75rem">* please still write good phpunit tests!</p>
 </div>
 
 ---
-layout: center
+layout: statement
 
 hideInToc: true
 ---
