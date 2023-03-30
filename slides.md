@@ -454,6 +454,17 @@ includes:
 
 ---
 
+# Contribute
+
+Code is on <a href="https://github.com/phpstan/phpstan-src" target="_blank"><carbon-logo-github /> phpstan/phpstan-src</a>
+
+- Very active community
+- Nearly every week a new bug-release (but not really sem-ver yet)
+- Lots of neat extensions for your favorite framework
+- Used by other packages like rector for its code analytics functionality
+
+---
+
 # Bonus: integrate into CI[^1]
 
 ### Junit
@@ -531,17 +542,6 @@ class Order
 ```
 
 [^1]: https://phpstan.org/writing-php-code/phpdoc-types#local-type-aliases
-
----
-
-# Contribute
-
-Code is on <a href="https://github.com/phpstan/phpstan-src" target="_blank"><carbon-logo-github /> phpstan/phpstan-src</a>
-
-- Very active community
-- Nearly every week a new bug-release (but not really sem-ver yet)
-- Lots of neat extensions for your favorite framework
-- Used by other packages like rector for its code analytics functionality
 
 ---
 layout: end
