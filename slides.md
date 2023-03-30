@@ -54,7 +54,7 @@ layout: default
 # Situation May 2022
 
 - Product running on PHP 7.4
-  - big codebase with > 100K LoC over 15K files
+  - big codebase with > 770K LoC over 10K files
 - PHP 8.1 out, 8.2 in development
 - Lots of breaking changes between 7.4 <-> 8.0
   - and even 8.0 <-> 8.1 🤯
