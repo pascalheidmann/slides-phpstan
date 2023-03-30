@@ -22,6 +22,7 @@ css: unocss
 titleTemplate: '%s'
 
 layout: cover
+hideInToc: true
 ---
 # PHPStan
 
@@ -32,6 +33,7 @@ layout: cover
 [^1]: mostly
 ---
 layout: center
+hideInToc: true
 ---
 
 # About me
@@ -49,7 +51,17 @@ Hi, I'm Pascal and working as Developer @ Check24 Hamburg
 - <a href="https://heidmann.io" target="_blank"><mdi-account-circle /> heidmann.io</a>
 
 ---
+layout: center
+hideInToc: true
+---
+# Agenda
+
+<Toc minDepth="1" maxDepth="1" />
+
+---
 layout: default
+
+title: Starting point
 ---
 # Situation May 2022
 
@@ -60,7 +72,9 @@ layout: default
   - and even 8.0 <-> 8.1 🤯
 
 ---
-
+level: 2
+hideInToc: true
+---
 # Breaking Changes PHP 8.0 / 8.1
 
 - new keywords like `match`, `mixed`, `enum`, `readonly`
@@ -70,7 +84,7 @@ layout: default
   - passing `null` to `non-null` arguments is deprecated
 
 
-## Lots of things that have to be checked manually
+### Lots of things that have to be checked manually
 Or can we get a little help by a friend?
 
 ---
@@ -99,6 +113,8 @@ layout: default
 
 ---
 layout: center
+
+hideInToc: true
 ---
 
 # Who has used PHPStan?
@@ -109,6 +125,8 @@ Or psalm?
 
 ---
 layout: default
+
+hideInToc: true
 ---
 
 # Basic example[^1]
@@ -141,6 +159,8 @@ DateTimeImmutable
 -->
 
 ---
+hideInToc: true
+---
 
 # Basic example (solved)
 ```php {5}
@@ -157,6 +177,8 @@ class HelloWorld
 
 <p style="background: rgb(220 252 231/.8); padding: .5rem">No errors!</p>
 
+---
+title: How does PHPStan work
 ---
 
 # How does this work?
@@ -193,6 +215,8 @@ function bar(string $myString) {}
 </v-click>
 
 ---
+hideInToc: true
+---
 
 # Conflicting code [^1]
 
@@ -219,8 +243,13 @@ function bar() {
 
 ---
 layout: image-left
-image: ./assets/tim-gouw-1K9T5YiZ2WU-unsplash-cropped.jpg
+
+title: Arrays and other special creatures
+
+image: ./assets/tim-gouw-1K9T5YiZ2WU-unsplash-cropped.jpg---
+
 ---
+
 # Arrays
 
 In PHP a special vehicle
@@ -228,6 +257,10 @@ In PHP a special vehicle
 - Associative array (other languages: `map`, `object`, `hash`)
 - Combination of both... 🥳
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 # Solution: Generics
@@ -265,7 +298,10 @@ class Foo {
 </v-click>
 
 ---
+layout: default
 
+title: PHPStan Annotations
+---
 # PHPStan annotations to the rescue
 
 ```php
@@ -290,6 +326,10 @@ class MyClass extends AbstractClass{
 
 ```
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 ### Callables[^1]
@@ -319,6 +359,10 @@ foo(valid(...));
 
 [^1]: https://phpstan.org/r/65fa3f86-3f82-4d4a-a391-71fcb3b4827d
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 # Alternatives for IDEs without support
@@ -357,11 +401,15 @@ function foo(array $param) {
 ---
 layout: center
 ---
+
 # Use PHPStan in your project
 
 ---
 layout: default
+
+hideInToc: true
 ---
+
 
 ## Adding to project
 ```bash
@@ -391,7 +439,10 @@ php ./vendor/bin/phpstan analyse
 
 ---
 layout: default
+
 lineNumbers: false
+
+hideInToc: true
 ---
 
 # Having lots of errors
@@ -410,6 +461,10 @@ Note: Using configuration file phpstan.neon.dist.
 [ERROR] Found 229 errors
 ```
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 # phpstan-baseline.neon
@@ -434,6 +489,10 @@ includes:
 </v-clicks>
 
 ---
+layout: default
+
+hideInToc: true
+---
 
 # Rule level & `mixed` [^1]
 
@@ -453,6 +512,11 @@ includes:
 [^1]: https://phpstan.org/user-guide/rule-levels
 
 ---
+layout: default
+
+hideInToc: true
+---
+
 
 # Contribute
 
@@ -463,6 +527,10 @@ Code is on <a href="https://github.com/phpstan/phpstan-src" target="_blank"><car
 - Lots of neat extensions for your favorite framework
 - Used by other packages like rector for its code analytics functionality
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 # Bonus: integrate into CI[^1]
@@ -487,6 +555,11 @@ More output types: `teamcity`, `json`, `prettyJson`, `checkstyle`, `raw`
 [^1]: https://phpstan.org/user-guide/output-format
 
 ---
+layout: default
+
+hideInToc: true
+---
+
 
 # Bonus: Extending PHPStan
 There are lots of extension already available
@@ -517,6 +590,10 @@ includes:
 
 </v-click>
 
+---
+layout: default
+
+hideInToc: true
 ---
 
 # Bonus: Custom types / Alias[^1]
