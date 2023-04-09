@@ -1,5 +1,4 @@
 ---
-# try also 'default' to start simple
 theme: check24
 
 # https://sli.dev/custom/highlighters.html
@@ -56,7 +55,7 @@ hideInToc: true
 ---
 # Agenda
 
-<Toc minDepth="1" maxDepth="1" />
+<Toc minDepth="1" maxDepth="1"></Toc>
 
 ---
 layout: center
@@ -73,9 +72,8 @@ title: Starting point
 
 ---
 level: 2
-hideInToc: true
 ---
-# Breaking Changes PHP 8.0 / 8.1
+## Breaking Changes PHP 8.0 / 8.1
 
 - new keywords like `match`, `mixed`, `enum`, `readonly`
 - (most) resources have dedicated objects as return type instead of `resource`
@@ -88,7 +86,7 @@ hideInToc: true
 Or can we get a little help by a friend?
 
 ---
-layout: center
+layout: default
 ---
 
 # What is PHPStan
@@ -114,10 +112,10 @@ layout: center
 ---
 layout: statement
 
-hideInToc: true
+level: 2
 ---
 
-# Who has used PHPStan?
+## Who has used PHPStan?
 
 <div v-click>
 Or psalm?
@@ -126,10 +124,10 @@ Or psalm?
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
-# Basic example[^1]
+## Basic example[^1]
 
 ```php {all|all|5|7|all}
 <?php declare(strict_types = 1);
@@ -159,10 +157,10 @@ DateTimeImmutable
 -->
 
 ---
-hideInToc: true
+level: 2
 ---
 
-# Basic example (solved)
+## Basic example (solved)
 ```php {5}
 <?php declare(strict_types = 1);
 
@@ -181,7 +179,7 @@ class HelloWorld
 title: How does PHPStan work
 ---
 
-# How does this work?
+# How does PHPStan work?
 
 - Doc block
 ```php
@@ -215,10 +213,10 @@ function bar(string $myString) {}
 </v-click>
 
 ---
-hideInToc: true
+level: 2
 ---
 
-# Conflicting code [^1]
+## Conflicting code [^1]
 
 ```php {all|3,7-9,11|all}
 <?php declare(strict_types = 1);
@@ -260,10 +258,10 @@ In PHP a special vehicle
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
-# Solution: Generics
+## Solution: Generics
 
 ### Fixed type array
 ```java
@@ -329,7 +327,7 @@ class MyClass extends AbstractClass{
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
 ### Callables[^1]
@@ -362,10 +360,10 @@ foo(valid(...));
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
-# Alternatives for IDEs without support
+## Alternatives for IDEs without support
 
 ### Prefixed annotations 
 ```php
@@ -407,9 +405,8 @@ layout: center
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
-
 
 ## Adding to project
 ```bash
@@ -442,10 +439,10 @@ layout: default
 
 lineNumbers: false
 
-hideInToc: true
+level: 2
 ---
 
-# Having lots of errors
+## Having lots of errors
 
 ```bash {1-3|5-9|11|all}
 > phpstan analyse --memory-limit=2048M
@@ -464,10 +461,10 @@ Note: Using configuration file phpstan.neon.dist.
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
-# phpstan-baseline.neon
+## phpstan-baseline.neon
 
 - Feature to keep track of errors
 
@@ -491,10 +488,10 @@ includes:
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
-# Rule level & `mixed` [^1]
+## Rule level & `mixed` [^1]
 
 <v-clicks>
 
@@ -514,9 +511,8 @@ hideInToc: true
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
-
 
 # Contribute
 
@@ -530,7 +526,7 @@ Code is on <a href="https://github.com/phpstan/phpstan-src" target="_blank"><car
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
 # Bonus: integrate into CI[^1]
@@ -557,9 +553,8 @@ More output types: `teamcity`, `json`, `prettyJson`, `checkstyle`, `raw`
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
-
 
 # Bonus: Extending PHPStan
 There are lots of extension already available
@@ -593,7 +588,7 @@ includes:
 ---
 layout: default
 
-hideInToc: true
+level: 2
 ---
 
 # Bonus: Custom types / Alias[^1]
@@ -625,3 +620,5 @@ layout: end
 
 transition: fade-out
 ---
+
+Thanks!
