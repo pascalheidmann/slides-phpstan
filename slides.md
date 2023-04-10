@@ -67,17 +67,18 @@ title: Starting point
 - Product running on PHP 7.4
   - big codebase with > 770K LoC over 10K files
 - PHP 8.1 out, 8.2 in development
-- Lots of breaking changes between 7.4 <-> 8.0
-  - and even 8.0 <-> 8.1 🤯
+- Lots of breaking changes between 7.4 ↔ 8.0
+  - and even 8.0 ↔ 8.1 🤯
 
 ---
 level: 2
 ---
 ## Breaking Changes PHP 8.0 / 8.1
 
-- new keywords like `match`, `mixed`, `enum`, `readonly`
+- new keywords like `match`[^1], `mixed`[^2], `enum`[^3], `readonly`[^4]
 - (most) resources have dedicated objects as return type instead of `resource`
-- string-number comparison
+  - "dual mode" while migrating: support both 7.4 and 8.1
+- string-number comparison[^5]
 - return types & type hints for native functions changed
   - passing `null` to `non-null` arguments is deprecated
 
@@ -85,23 +86,25 @@ level: 2
 ### Lots of things that have to be checked manually
 Or can we get a little help by a friend?
 
+[^1]: https://wiki.php.net/rfc/match_expression_v2
+[^2]: https://php.watch/versions/8.0/mixed-type
+[^3]: https://stitcher.io/blog/php-enums
+[^4]: https://stitcher.io/blog/new-in-php-81#readonly-properties-rfc
+[^5]: https://wiki.php.net/rfc/string_to_number_comparison
+
 ---
-layout: default
+layout: center
 ---
 
 # What is PHPStan
 
-<h2>
-    <span v-click>
-    PHPStan =
-    </span>
-    <span v-click>
-    PHP
-    </span>
-    <span v-click>
-    + Static Analysis
-    </span>
-</h2>
+---
+layout: default
+level: 2
+---
+
+<h2><span>PHP</span> <span v-click>+ Static Analysis</span></h2>
+<h2 v-click>= PHPStan</h2>
 
 <div class="text-center" style="padding-top: 5rem" v-click>
     <h3>Let our computer do the heavy work and test your code automatically.</h3>
@@ -110,7 +113,39 @@ layout: default
 </div>
 
 ---
-layout: statement
+layout: default
+level: 2
+---
+
+## Excursion into type validation within PHP 
+
+PHP is a weak-typed dynamic interpreted programming language
+
+```php
+$foo = 123; // no explicit type
+$foo = 'bar'; // re-assign variable with different type
+```
+
+<v-click>
+
+### Execution is a 2-steps system
+
+</v-click>
+
+<v-clicks>
+
+1. Code is parsed on a per-file basis and transformed to OPCodes via an Abstract Syntax Tree (AST).
+   - any syntax error will result in an error
+2. Evaluating code
+    - execution line by line
+    - `include`/`require` trigger parsing of the requested file (including via class loader)
+    - `type hints` & `return types` trigger type validation → error gets thrown at exactly this part
+    - `null pointer` checks
+
+</v-clicks>
+
+---
+layout: center
 
 level: 2
 ---
@@ -136,7 +171,7 @@ class HelloWorld
 {
 	public function sayHello(DateTimeImutable $date): void
 	{
-		echo 'Hello, ' . $date->format('j. n. Y');
+		echo 'Hello, ' . $date→format('j. n. Y');
 	}
 }
 ```
@@ -152,10 +187,6 @@ class HelloWorld
 
 [^1]: [source: try phpstan](https://phpstan.org/r/549ceaa7-c9fd-4e35-ae5c-38fd6cb3dd7d)
 
-<!--
-DateTimeImmutable
--->
-
 ---
 level: 2
 ---
@@ -168,7 +199,7 @@ class HelloWorld
 {
 	public function sayHello(DateTimeImmutable $date): void
 	{
-		echo 'Hello, ' . $date->format('j. n. Y');
+		echo 'Hello, ' . $date→format('j. n. Y');
 	}
 }
 ```
@@ -498,8 +529,8 @@ level: 2
 - Between 0-9 (max)
     - higher = more rules (= more errors)
 - PHP 8.0 introduced `mixed` for arbitrary output
-- `array` -> implicit `array<string|int, mixed>`
-  - Level 8+ treats `mixed` as own type that can't be matched -> ERROR
+- `array` → implicit `array<string|int, mixed>`
+  - Level 8+ treats `mixed` as own type that can't be matched → ERROR
 
 ### Start with lower rule set and solve errors first
 ### Or: use baseline
@@ -565,14 +596,14 @@ There are lots of extension already available
 ```php
 /** @var \Psr\Container\ContainerInterface $container */
 /** @var ??? $fooService */
-$fooService = $container->get(FooService::class);
+$fooService = $container→get(FooService::class);
 ```
 
 </v-click>
 
 <v-click>
 
--> [`bnf/phpstan-psr-container`](https://github.com/bnf/phpstan-psr-container)
+→ [`bnf/phpstan-psr-container`](https://github.com/bnf/phpstan-psr-container)
 
 </v-click>
 <v-click>
