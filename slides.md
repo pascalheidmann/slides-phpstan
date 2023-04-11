@@ -37,18 +37,24 @@ hideInToc: true
 
 # About me
 
+<div class="grid grid-cols-2">
+<div class="col-auto">
+
 Hi, I'm Pascal and working as Developer @ Check24 Hamburg
 
 - PHP fanatic since over 15 years
 - Interests: clean code & architecture
 - At Check24: Laminas/Mezzio + Doctrine
-
-
 - <a href="https://github.com/pascalheidmann" target="_blank"><carbon-logo-github /> github.com/pascalheidmann</a>
 - <a href="https://www.linkedin.com/in/pascal-heidmann/" target="_blank"><carbon-logo-linkedin />
   linkedin.com/in/pascal-heidmann</a>
 - <a href="https://heidmann.io" target="_blank"><mdi-account-circle /> heidmann.io</a>
 
+</div>
+<div class="">
+<img src="assets/portrait-pascal.jpg" style="width: 15rem; height: 15rem" class="rounded-3xl float-right" />
+</div>
+</div>
 ---
 layout: center
 hideInToc: true
