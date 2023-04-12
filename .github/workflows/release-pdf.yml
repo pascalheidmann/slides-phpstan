@@ -22,7 +22,7 @@ jobs:
                 with:
                     repo_token: ${{ secrets.GITHUB_TOKEN }}
                     file: slides-export.pdf
-                    asset_name: phpstan-slides.pdf
+                    asset_name: phpstan-slides-${{ github.ref }}.pdf
                     tag: ${{ github.ref }}
                     overwrite: true
                     body: "New release"
