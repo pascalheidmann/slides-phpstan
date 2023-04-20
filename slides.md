@@ -105,7 +105,7 @@ layout: center
 # What is PHPStan
 
 ---
-layout: default
+layout: center
 level: 2
 ---
 
@@ -164,8 +164,8 @@ Or psalm?
 
 ---
 layout: default
-
 level: 2
+clicks: 4
 ---
 
 ## Basic example[^1]
@@ -277,20 +277,81 @@ function bar() {
 [^1]: https://phpstan.org/r/b5c4f4af-6fe8-4e9c-9377-757b4d4c69a2
 
 ---
-layout: image-left
+layout: center
 
 title: Arrays and other special creatures
-
-image: ./assets/tim-gouw-1K9T5YiZ2WU-unsplash-cropped.jpg---
+---
+# Arrays
 
 ---
+layout: image-left
 
-# Arrays
+image: ./assets/tim-gouw-1K9T5YiZ2WU-unsplash-cropped.jpg
+
+level: 2
+---
+
+## Arrays
 
 In PHP a special vehicle
 - Index based list of things (other languages: `list`, `array`)
 - Associative array (other languages: `map`, `object`, `hash`)
 - Combination of both... 🥳
+
+---
+layout: two-cols
+level: 2
+clicks: 4
+---
+
+## Will this work?
+```php {all|15|all|12|all}
+class FooClass {
+    function setName(string $name): void {
+        $this->name = $name;
+    }
+}
+
+function foo(): array {
+    return [new FooClass()];
+}
+
+/**
+* @param Bar[] $bars
+ */
+function bar(array $bars): void {
+    foreach ($bars as $bar) {
+        $bar->doBar();
+    }
+}
+
+$myDataArray = foo();
+// ...
+bar($myDataArray);
+```
+
+::right::
+
+<v-click at="0">
+
+### Spoiler: nope.
+
+```bash
+Fatal error:
+Call to undefined method FooClass::doBar() on line 15
+```
+
+</v-click>
+
+<v-clicks at="1">
+
+Problem: PHP will crash only after undefined method is called.
+
+Observant Dev might spot wrong array type already in line 12
+
+### → Maybe PHPStan can help?
+
+</v-clicks>
 
 ---
 layout: default
