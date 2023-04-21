@@ -4,6 +4,7 @@
 	"scripts": {
 		"build": "slidev build",
 		"dev": "slidev --open",
+		"dev:short": "slidev --open short.md",
 		"export": "slidev export",
 		"export-clicks": "slidev export --with-clicks"
 	},
