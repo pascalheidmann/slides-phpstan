@@ -52,7 +52,7 @@ Hi, I'm Pascal and working as Developer @ Check24 Hamburg
 
 </div>
 <div class="">
-<img src="assets/portrait-pascal.jpg" style="width: 15rem; height: 15rem" class="rounded-3xl float-right" />
+<img src="public/portrait-pascal.jpg" style="width: 15rem; height: 15rem" class="rounded-3xl float-right" />
 </div>
 </div>
 ---

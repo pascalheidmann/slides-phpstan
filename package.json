@@ -9,7 +9,7 @@
 		"export-clicks": "slidev export --with-clicks"
 	},
 	"dependencies": {
-		"@slidev/cli": "^0.40.3",
+		"@slidev/cli": "^0.46.1",
 		"@slidev/theme-default": "*",
 		"@slidev/theme-seriph": "*",
 		"slidev-theme-check24": "https://github.com/pascalheidmann/slidev-theme-check24.git#main",
